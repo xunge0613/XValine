@@ -1,6 +1,6 @@
 {
   "name": "xvaline",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "comment system with spam checking and review, based on Valine.",
   "main": "/dist/Valine.min.js",
   "author": "xCss <xioveliu@gmail.com> (https://github.com/xCss),Tony.Xu(https://github.com/xunge0613)",
