@@ -21,6 +21,8 @@
 
 - 支持自定义屏蔽词列表
 
+![image](https://user-images.githubusercontent.com/1448574/86373202-baf5e100-bcb5-11ea-992e-36876b618a1d.png)
+
 ``` javascript
 
 /**
@@ -45,6 +47,8 @@ new Valine({
 > **说明：推荐结合 [Valine-Admin](https://github.com/DesertsP/Valine-Admin) 配套使用，管理相对方便**
 
 **兼容不配套 Valine-Admin 使用**，设置 `requireReview:true` 后，新增评论默认添加 `isSpam` 属性，前端展示时会自动将内容转换为`该评论需要审核后才可以显示哦~ ヾ(๑╹◡╹)ﾉ"`，可在 LeanCloud 后台改数据审核通过该评论。（感谢[alwxkxk](https://github.com/xCss/Valine/issues/276#issuecomment-640048814) 的启发）
+
+![image](https://user-images.githubusercontent.com/1448574/86372944-6eaaa100-bcb5-11ea-959e-4eace054a868.png)
 
 ``` javascript
 /**
