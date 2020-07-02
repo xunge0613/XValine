@@ -69,7 +69,7 @@ new Valine({
 // npm
 npm install xvaline --save
 // cdn
-<script src='//cdn.jsdelivr.net/gh/xunge0613/xvaline/dist/Valine.min.js'></script>
+<script src='https//cdn.jsdelivr.net/gh/xunge0613/xvaline/dist/Valine.min.js'></script>
 
 // Use import
 import Valine from 'xvaline';
