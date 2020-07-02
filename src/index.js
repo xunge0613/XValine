@@ -154,7 +154,6 @@ ValineFactory.prototype._init = function(){
         root.verify = verify || false;
         _avatarSetting['params'] = `?d=${(ds.indexOf(avatar) > -1 ? avatar : 'mp')}&v=${VERSION}${force}`;
         _avatarSetting['hide'] = avatar === 'hide' ? true : false;
-        _avatarSetting['cdn'] = /^https?\:\/\//.test(avatar_cdn) ? avatar_cdn : _avatarSetting['cdn']
 
         let size = Number(pageSize || 10);
         root.config.pageSize = !isNaN(size) ? (size < 1 ? 10 : size) : 10;
@@ -702,6 +701,7 @@ ValineFactory.prototype.bind = function (option) {
     }
 
     let query = (no = 1) => {
+        // 服务端获取数据
         let size = root.config.pageSize;
         let count = Number(Utils.find(root.el, '.vnum').innerText);
         root.loading.show();
@@ -769,6 +769,13 @@ ValineFactory.prototype.bind = function (option) {
         let _nick = '';
         let _t = rt.get('link')?(/^https?\:\/\//.test(rt.get('link')) ? rt.get('link') : 'http://'+rt.get('link')) : '';
         _nick = _t ? `<a class="vnick" rel="nofollow" href="${_t}" target="_blank" >${rt.get("nick")}</a>` : `<span class="vnick">${rt.get('nick')}</span>`;
+        // 兼容非 valine admin 的审核功能
+        let _comment = '';
+        if(root['config']['requireReview']) {
+          _comment = rt.get('isSpam') ? '该评论需要审核后才可以显示哦~ ヾ(๑╹◡╹)ﾉ"' : xssFilter(rt.get("comment"));
+        } else {
+          _comment = xssFilter(rt.get("comment"))
+        }
         _vcard.innerHTML = `${_img}
             <div class="vh" rootid=${rt.get('rid') || rt.id}>
                 <div class="vhead">${_nick} ${uaMeta}</div>
@@ -777,7 +784,7 @@ ValineFactory.prototype.bind = function (option) {
                     <span class="vat">${root.locale['ctrl']['reply']}</span>
                 </div>
                 <div class="vcontent">
-                    ${xssFilter(rt.get("comment"))}
+                    ${_comment}
                 </div>
             </div>`;
         let _vat = Utils.find(_vcard, '.vat');
@@ -924,8 +931,14 @@ ValineFactory.prototype.bind = function (option) {
           })
           return;
         }
-        
+
         defaultComment['nick'] = defaultComment['nick'] || 'Anonymous';
+
+        // 兼容需要审核内容，但非 Valine-Admin 用户
+        if(root['config']['requireReview']) {
+          // 因 valine-admin 使用 isSpam 字段
+          defaultComment['isSpam'] = true;
+        }
 
         // return;
         if (root.notify || root.verify) {
@@ -983,10 +996,9 @@ ValineFactory.prototype.bind = function (option) {
                         text: `评论已成功提交，请耐心等待审核通过哦ヾ(๑╹◡╹)ﾉ"`,
                         ctxt: root.locale['ctrl']['ok']
                       })
-                    } else {
-                      // 执行原逻辑
-                      insertDom(ret, vquote, !0)
-                    }
+                    }  
+                    // 执行原逻辑
+                    insertDom(ret, vquote, !0)
                 } else {
                     if (_count) {
                         num = Number(_count.innerText) + 1;
@@ -1001,11 +1013,9 @@ ValineFactory.prototype.bind = function (option) {
                         text: `评论已成功提交，请耐心等待审核通过哦ヾ(๑╹◡╹)ﾉ"`,
                         ctxt: root.locale['ctrl']['ok']
                       })
-                    } else {
-                      // 执行原逻辑
-                      insertDom(ret, Utils.find(root.el, '.vlist'));
-                    }
-                    
+                    }  
+                    // 执行原逻辑
+                    insertDom(ret, Utils.find(root.el, '.vlist'));
                     root.config.pageSize++
                 }
 

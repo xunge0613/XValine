@@ -4,7 +4,7 @@
 
 - 感谢 [Valine](https://github.com/xCss/Valine) 提供了这么棒的评论系统
 - 感谢 [Valine-Admin](https://github.com/DesertsP/Valine-Admin) 提供的专业评论后台管理
-- 另外也感谢 [NeoValine](https://www.ohmysites.com/archives/15/) 提供了改造灵感
+- 另外也感谢 [NeoValine](https://www.ohmysites.com/archives/15/)、[alwxkxk](https://github.com/xCss/Valine/issues/276#issuecomment-640048814) 提供了改造灵感
 
 <img src='./src/assets/valine.png' width='200' align="right" />
 
@@ -16,6 +16,10 @@
 ## 使用方法
 
 ### 关键词屏蔽
+
+设置**关键词屏蔽**后，用户提交评论时，如果包含屏蔽词，则会弹层告知内容中含有`某某屏蔽词`，可以一定程度上减少垃圾信息。
+
+- 支持自定义屏蔽词列表
 
 ``` javascript
 
@@ -38,11 +42,9 @@ new Valine({
 
 ### 人工审核
 
-> **说明：此功能需要结合 [Valine-Admin](https://github.com/DesertsP/Valine-Admin) 配套使用**
+> **说明：推荐结合 [Valine-Admin](https://github.com/DesertsP/Valine-Admin) 配套使用，管理相对方便**
 
-**请先配置好 `Valine-Admin`**
-**请先配置好 `Valine-Admin`**
-**请先配置好 `Valine-Admin`**
+**兼容不配套 Valine-Admin 使用**，设置 `requireReview:true` 后，新增评论默认添加 `isSpam` 属性，前端展示时会自动将内容转换为`该评论需要审核后才可以显示哦~ ヾ(๑╹◡╹)ﾉ"`，可在 LeanCloud 后台改数据审核通过该评论。（感谢[alwxkxk](https://github.com/xCss/Valine/issues/276#issuecomment-640048814) 的启发）
 
 ``` javascript
 /**
@@ -52,7 +54,7 @@ new Valine({
 new Valine({
     // 页面中 <div id="vcomments"></div>
     el:'#vcomments', 
-    // 配置好 Valine-Admin 的 app 信息
+    // 配置好 Leancloud or Valine-Admin 的 app 信息
     appId: 'Your appId',
     appKey: 'Your appKey',
     // 设置为需要人工审核
