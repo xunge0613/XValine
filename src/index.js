@@ -217,7 +217,7 @@ ValineFactory.prototype._init = function(){
             break;
           case "default":
             // 默认加载屏蔽词
-            banKeywordsUrl = "https://cdn.jsdelivr.net/gh/xunge0613/cdn/blog/json/ban-keywords.json"
+            banKeywordsUrl = "https://cdn.jsdelivr.net/gh/xunge0613/cdn@latest/blog/json/ban-keywords.json"
             break;
           case (banKeywords.match(/^https?:\/\/.+/) || {}).input:
             // 指定屏蔽词 url
