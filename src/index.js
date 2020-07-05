@@ -141,11 +141,14 @@ ValineFactory.prototype._init = function(){
             pageSize,
             recordIP,
             clazzName = 'Comment',
-            requireReview = false, // 默认不需要人工审核
-            banKeywords, // 前端检测禁用关键词，默认不启用
+            requireReview = true, // 默认开启，先审核后显示
+            banKeywords = "default", // 默认开启，前端检测屏蔽禁用关键词
         } = root.config;
         root['config']['path'] = path.replace(/index\.html?$/, '');
         root['config']['clazzName'] = clazzName;
+        // 默认开启，先审核后显示 & 关键词屏蔽
+        root['config']['requireReview'] = requireReview;
+        root['config']['banKeywords'] = banKeywords;
         let ds = _avatarSetting['ds'];
         let force = avatarForce ? '&q=' + Math.random().toString(32).substring(2) : '';
         lang && langMode && root.installLocale(lang, langMode);
