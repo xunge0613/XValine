@@ -4,6 +4,8 @@
 
 - TypeScript
   - 新增 TypeScript 声明
+- Demo
+  - 新增 demo 页：[XValine Demo](https://xuxun.cool/playground/xvaline)
 
 ## v 0.0.5
 

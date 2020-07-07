@@ -121,7 +121,7 @@ new Valine({
 
 ## 更新日志
 
-当前稳定版本 v 0.0.6, 查看[更新日志](https://c.com/xunge0613/XValine/blob/master/change-log.md)
+当前稳定版本 v 0.0.6, 查看[更新日志](https://github.com/xunge0613/XValine/blob/master/change-log.md)
 
 ## 鸣谢
 
