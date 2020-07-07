@@ -119,6 +119,10 @@ new Valine({
 })
 ```
 
+## 更新日志
+
+当前稳定版本 v 0.0.6, 查看[更新日志](https://c.com/xunge0613/XValine/blob/master/change-log.md)
+
 ## 鸣谢
 
 - 感谢 [Valine](https://github.com/xCss/Valine) 提供了这么棒的评论系统
